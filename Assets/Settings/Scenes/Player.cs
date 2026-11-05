@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
         float move = Input.GetAxis("Horizontal");
         position.x = position.x + speed * Time.deltaTime * move;
         transform.position = position;
+        _rigidbody2D.linearVelocity = new Vector2(move * speed, _rigidbody2D.linearVelocity.y);
 
         if(move != 0)
         {
@@ -47,9 +48,8 @@ public class Player : MonoBehaviour
         {
             isJumping = true;
             jumpCount++;
-            _rigidbody2D.linearVelocity = Vector2.zero;
-            _rigidbody2D.AddForce(new Vector2(0, Mathf.Sqrt(-2 * Physics2D.gravity.y *
-                JumpHeight)), ForceMode2D.Impulse);
+            float jumpVelocity = Mathf.Sqrt(-2f * Physics2D.gravity.y * _rigidbody2D.gravityScale * JumpHeight);
+            _rigidbody2D.linearVelocity = new Vector2(_rigidbody2D.linearVelocity.x, jumpVelocity);
         }
 
         _animator.SetBool("IsJumping", isJumping);
@@ -57,11 +57,25 @@ public class Player : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //if player collides with anything above when jumping as well
-        if(collision.GetContact(0).normal.y > 0.5f && isJumping)
+        CheckGround(collision);
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        CheckGround(collision);
+    }
+
+    void CheckGround(Collision2D collision)
+    {
+        if (_rigidbody2D.linearVelocity.y > 0.1f) return;
+        foreach (ContactPoint2D contact in collision.contacts)
         {
-            isJumping = false;
-            jumpCount = 0;
+            if(contact.normal.y > 0.5f)
+            {
+                isJumping = false;
+                jumpCount = 0;
+                return;
+            }
         }
     }
 }
