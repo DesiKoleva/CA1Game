@@ -78,4 +78,13 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    //Collectables
+    int presents = 0;
+
+    //public void AddLife()
+    public void AddPresent()
+    {
+        presents++;
+    }
 }
