@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,6 +7,8 @@ public class Player : MonoBehaviour
     public int state = 0;
     public int speed;
     public float JumpHeight = 1f;
+    public int maxJumps = 2;
+    private int jumpCount = 0;
     private bool isJumping = false;
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
@@ -40,9 +43,10 @@ public class Player : MonoBehaviour
         }
         _animator.SetBool("IsRunning", move != 0);
         
-        if(!isJumping && Input.GetKeyDown(KeyCode.Space))
+        if(jumpCount < maxJumps && Input.GetKeyDown(KeyCode.Space))
         {
             isJumping = true;
+            jumpCount++;
             _rigidbody2D.linearVelocity = Vector2.zero;
             _rigidbody2D.AddForce(new Vector2(0, Mathf.Sqrt(-2 * Physics2D.gravity.y *
                 JumpHeight)), ForceMode2D.Impulse);
@@ -53,10 +57,11 @@ public class Player : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //if player collides with anything above when jumping
-        if(collision.GetContact(0).normal.y > 0.5f)
+        //if player collides with anything above when jumping as well
+        if(collision.GetContact(0).normal.y > 0.5f && isJumping)
         {
             isJumping = false;
+            jumpCount = 0;
         }
     }
 }
