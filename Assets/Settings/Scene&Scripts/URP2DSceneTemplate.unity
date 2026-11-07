@@ -13175,7 +13175,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6747203, y: 0.94536, z: -11}
+  m_LocalPosition: {x: -3.6747203, y: 0.94526, z: -11}
   m_LocalScale: {x: 0.21875, y: 0.4096875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14426,7 +14426,7 @@ Transform:
   m_GameObject: {fileID: 709314321}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.4154, y: 0.95, z: -11}
+  m_LocalPosition: {x: -9.54, y: 0.95, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15278,6 +15278,9 @@ MonoBehaviour:
   attackRange: 1.2
   attackCoolDown: 1.5
   attackDamage: 1
+  attackWindup: 0.35
+  attackRecovery: 0.4
+  hitRange: 1.5
   maxHealth: 5
   hurtStunTime: 0.4
   deathDelay: 1
@@ -18390,7 +18393,7 @@ Transform:
   m_GameObject: {fileID: 1813687407}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.4154, y: 0.95, z: -1}
+  m_LocalPosition: {x: -9.54, y: 0.95, z: -1}
   m_LocalScale: {x: 0.9517, y: 0.974, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18506,6 +18509,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HeroHealth
   maxHealth: 5
   invincibleTime: 1
+  knockbackForce: 6
+  staggerTime: 0.2
+  healthBar: {fileID: 0}
+  hitSound: {fileID: 0}
 --- !u!114 &1813687416
 MonoBehaviour:
   m_ObjectHideFlags: 0
