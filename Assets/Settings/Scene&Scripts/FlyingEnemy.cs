@@ -13,6 +13,10 @@ public class FlyingEnemy : MonoBehaviour
     public float attackRange = 1.2f;
     public float attackCoolDown = 1.5f;
     public int attackDamage = 1;
+    public float attackWindup = 0.35f;//sign before the damage lands
+    public float attackRecovery = 0.4f;//freezes after the hit
+    public float hitRange = 1.5f;//how close the hero needs to be for the hit to land
+    bool isAttacking;
 
     [Header("Health")]
     public int maxHealth = 5;
