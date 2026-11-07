@@ -892,6 +892,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6072232795771451290, guid: faa8413b1d9e4cd48ab117de84514e7c, type: 3}
   m_PrefabInstance: {fileID: 317096478}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &327092642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 327092643}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &327092643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327092642}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8, y: 0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1813687411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &347111633
 GameObject:
   m_ObjectHideFlags: 0
@@ -15051,6 +15082,7 @@ GameObject:
   - component: {fileID: 879751173}
   - component: {fileID: 879751177}
   - component: {fileID: 879751176}
+  - component: {fileID: 879751178}
   m_Layer: 6
   m_Name: FlyingEnemy
   m_TagString: Untagged
@@ -15215,7 +15247,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -15227,6 +15259,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &879751178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879751172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d9b47eb707bc2428b000a463ac2ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
+  patrolSpeed: 2
+  patrolDistance: 4
+  detectRange: 6
+  chaseSpeed: 3.5
+  attackRange: 1.2
+  attackCoolDown: 1.5
+  attackDamage: 1
+  maxHealth: 5
+  hurtStunTime: 0.4
+  deathDelay: 1
+  spriteFacesRight: 1
 --- !u!1001 &882372373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18238,6 +18293,8 @@ GameObject:
   - component: {fileID: 1813687411}
   - component: {fileID: 1813687410}
   - component: {fileID: 1813687409}
+  - component: {fileID: 1813687416}
+  - component: {fileID: 1813687415}
   - component: {fileID: 1813687412}
   - component: {fileID: 1813687413}
   - component: {fileID: 1813687414}
@@ -18336,7 +18393,8 @@ Transform:
   m_LocalPosition: {x: -9.4154, y: 0.95, z: -1}
   m_LocalScale: {x: 0.9517, y: 0.974, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 327092643}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1813687412
@@ -18434,6 +18492,39 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.4055018, y: 1.284165}
   m_EdgeRadius: 0
+--- !u!114 &1813687415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813687407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90282aa368edf4048b295bc6bf468a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeroHealth
+  maxHealth: 5
+  invincibleTime: 1
+--- !u!114 &1813687416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813687407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e443e72c961e847bc1868d2d3ac4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeroCombat
+  attackPoint: {fileID: 327092643}
+  attackRange: 0.7
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  attackCooldown: 0.5
+  hitDelay: 0.15
 --- !u!1001 &1864763774
 PrefabInstance:
   m_ObjectHideFlags: 0
