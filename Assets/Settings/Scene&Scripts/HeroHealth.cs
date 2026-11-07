@@ -48,7 +48,7 @@ public class HeroHealth : MonoBehaviour
         staggerUntil = Time.time + staggerTime;
         health -= amount;
         Debug.Log("Hero health: " + health);
-        if(hitSound != null)
+        if (hitSound != null)
         {
             hitSound.Play();
         }
@@ -59,7 +59,7 @@ public class HeroHealth : MonoBehaviour
         }
         Knockback(hitFrom);
         StartCoroutine(FlashRoutine());
-
+    }
         void Knockback(Vector2 hitFrom)
         {
             if(rb == null)
@@ -100,7 +100,6 @@ public class HeroHealth : MonoBehaviour
             healthBar.value = Mathf.Max(0, health);
         }
 
-    }
     void Die()
     {
         //Restart the level.Or at checkpoint.

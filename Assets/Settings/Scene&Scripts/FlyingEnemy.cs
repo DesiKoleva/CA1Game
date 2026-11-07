@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -66,6 +67,11 @@ public class FlyingEnemy : MonoBehaviour
         {
             return;
         }
+        if(isAttacking)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
         if(Time.time < stunUntil)
         {
             rb.linearVelocity = Vector2.zero;
@@ -111,16 +117,36 @@ public class FlyingEnemy : MonoBehaviour
 
     void TryAttack()
     {
-        if(Time.time < nextAttackTime)
+       if(isAttacking||dead||Time.time<nextAttackTime)
         {
             return;
         }
-        nextAttackTime = Time.time + attackCoolDown;
+        StartCoroutine(AttackRoutine());
+
+    }
+
+    IEnumerator AttackRoutine()
+    {
+        isAttacking = true;
+        nextAttackTime = Time.time + attackWindup + attackRecovery + attackCoolDown;
+
+        rb.linearVelocity = Vector2.zero;
+        FaceTowards(hero.transform.position.x - transform.position.x);
         anim.SetTrigger("Attack");
 
-        //Calls method takedDamage from player
-        hero.SendMessage("TakeDamage", attackDamage);
-
+        yield return new WaitForSeconds(attackWindup);
+        bool stunned = Time.time < stunUntil;
+        float dist = Vector2.Distance(transform.position, hero.transform.position);
+        if(!dead && !stunned && dist <= hitRange)
+        {
+            HeroHealth hh = hero.GetComponent<HeroHealth>();
+            if(hh != null)
+            {
+                hh.TakeDamageFrom(attackDamage, transform.position);
+            }
+        }
+        yield return new WaitForSeconds(attackRecovery);
+        isAttacking = false;
     }
     void FaceTowards(float xDirection)
     {
@@ -146,6 +172,8 @@ public class FlyingEnemy : MonoBehaviour
         {
             anim.SetTrigger("Hurt");
             stunUntil = Time.time + hurtStunTime;
+            StopAllCoroutines();
+            isAttacking = false;
         }
     }
     void Die()
