@@ -19839,6 +19839,7 @@ GameObject:
   - component: {fileID: 2072952096}
   - component: {fileID: 2072952095}
   - component: {fileID: 2072952097}
+  - component: {fileID: 2072952098}
   m_Layer: 0
   m_Name: Key 3 - Gold
   m_TagString: Collectables
@@ -19966,6 +19967,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.26, y: 0.84}
   m_EdgeRadius: 0
+--- !u!114 &2072952098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072952094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178006f9322b54442a622dab1d747049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collectables
+  points: 0
+  restoreHEalth: 0
+  floats: 1
+  floatHeight: 0.1
+  floatSpeed: 2
+  givesKey: 1
 --- !u!1001 &2082825571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20329,6 +20348,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2384316408594133934, guid: e25ef5a627f938c44808364aae22db37, type: 3}
   m_PrefabInstance: {fileID: 6389253121334333014}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &6930122696317971915 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2911476902189000671, guid: e25ef5a627f938c44808364aae22db37, type: 3}
+  m_PrefabInstance: {fileID: 6389253121334333014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &6930122696317971916
 Rigidbody2D:
   serializedVersion: 5
@@ -20414,8 +20438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075baa451b2a3354e9c3b983b0bc5414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chest
-  animator: {fileID: 0}
-  openState: open
+  animator: {fileID: 6930122696317971915}
+  openState: Open
   lockedState: Closed
 --- !u!4 &8835732613868673473 stripped
 Transform:
