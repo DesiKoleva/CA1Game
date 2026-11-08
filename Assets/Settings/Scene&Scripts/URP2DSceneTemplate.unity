@@ -667,6 +667,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3261066817682409596, guid: 7b51376ff9aae694dbc3f515f5737d84, type: 3}
   m_PrefabInstance: {fileID: 182091008}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &208369153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1049023302621363167, guid: c4728654af6c1b84fb5102e3f29ffb8f, type: 3}
+  m_PrefabInstance: {fileID: 2082825571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &223485840
 GameObject:
   m_ObjectHideFlags: 0
@@ -13209,7 +13214,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.725977, y: 0.9453, z: -11}
+  m_LocalPosition: {x: -6.8442154, y: 0.94562995, z: -11}
   m_LocalScale: {x: 0.21875, y: 0.4096875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15150,7 +15155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4833168b480d145b55e5fa1443efdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleEnemy
-  maxHealth: 3
+  maxHealth: 5
   damage: 10
   points: 25
   moveSpeed: 1.5
@@ -15160,11 +15165,11 @@ MonoBehaviour:
   hostile: 1
   spriteFacesRight: 1
   deathDelay: 0.8
-  idleState: MushroomIdle
-  runState: RunM
-  attackState: AttackM
-  hitState: TakeHitM
-  deathState: DeathM
+  idleState: GoblinIdle
+  runState: RunG
+  attackState: AttackG
+  hitState: TakeHitG
+  deathState: DeathG
   attackAnimTime: 0.6
   hitAnimTime: 0.3
   riddle: 'I follow you wherever you go,
@@ -16282,7 +16287,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5195500821582717841, guid: 6ecf5bcec20adfa429a788f660f29ff5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1933227064}
+    - targetCorrespondingSourceObject: {fileID: 5195500821582717841, guid: 6ecf5bcec20adfa429a788f660f29ff5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1933227063}
   m_SourcePrefab: {fileID: 100100000, guid: 6ecf5bcec20adfa429a788f660f29ff5, type: 3}
 --- !u!4 &1028533379 stripped
 Transform:
@@ -16859,7 +16870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4833168b480d145b55e5fa1443efdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RiddleEnemy
-  maxHealth: 3
+  maxHealth: 5
   damage: 10
   points: 25
   moveSpeed: 1.5
@@ -16869,11 +16880,11 @@ MonoBehaviour:
   hostile: 1
   spriteFacesRight: 1
   deathDelay: 0.8
-  idleState: MushroomIdle
-  runState: RunM
-  attackState: AttackM
-  hitState: TakeHitM
-  deathState: DeathM
+  idleState: SkeletonIdle
+  runState: RunS
+  attackState: AttackS
+  hitState: TakeHitS
+  deathState: DeathS
   attackAnimTime: 0.6
   hitAnimTime: 0.3
   riddle: 'I have hands but cannot hold,
@@ -17087,6 +17098,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7517545629813287398, guid: 3373af298f123a849a61f9aefe9ec4c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1192436863}
+    - targetCorrespondingSourceObject: {fileID: 7517545629813287398, guid: 3373af298f123a849a61f9aefe9ec4c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1192436864}
   m_SourcePrefab: {fileID: 100100000, guid: 3373af298f123a849a61f9aefe9ec4c4, type: 3}
 --- !u!4 &1192436861 stripped
 Transform:
@@ -17132,7 +17146,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.1574421, y: -2.0261843}
+  m_Offset: {x: 0.041507035, y: -1.4293396}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -17142,8 +17156,21 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.52083206, y: 4.0118957}
+  m_Size: {x: 0.9187303, y: 6.094993}
   m_EdgeRadius: 0
+--- !u!114 &1192436864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192436862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35962328d6f8d294a887630206258c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ladder
+  climbSpeed: 3
 --- !u!1001 &1196658786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18047,6 +18074,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7517545629813287398, guid: 3373af298f123a849a61f9aefe9ec4c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1494158175}
+    - targetCorrespondingSourceObject: {fileID: 7517545629813287398, guid: 3373af298f123a849a61f9aefe9ec4c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1494158176}
   m_SourcePrefab: {fileID: 100100000, guid: 3373af298f123a849a61f9aefe9ec4c4, type: 3}
 --- !u!4 &1494158174 stripped
 Transform:
@@ -18083,11 +18113,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.1574421, y: -2.0261843}
+  m_Offset: {x: -0.0010910034, y: -1.7916567}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -18097,8 +18127,21 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.52083206, y: 4.0118957}
+  m_Size: {x: 0.83353424, y: 6.6307826}
   m_EdgeRadius: 0
+--- !u!114 &1494158176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227257799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35962328d6f8d294a887630206258c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ladder
+  climbSpeed: 3
 --- !u!1001 &1501766805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19465,6 +19508,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4653831799294361326, guid: 7903d081236f2304396572efb80b5f8f, type: 3}
   m_PrefabInstance: {fileID: 1923546617}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1933227062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5195500821582717841, guid: 6ecf5bcec20adfa429a788f660f29ff5, type: 3}
+  m_PrefabInstance: {fileID: 1028533378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1933227063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933227062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dce7fa6ea253904e9f1a73381ca9ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoryPoint
+  story: 'If you are passing by, that means you have proven your worth as a warrior.
+    Good work, young hero! But don''t let your ego get ahead of you...
+
+'
+  onlyOnce: 0
+--- !u!61 &1933227064
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933227062}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.2899711, y: 1.1253574}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.822671, y: 2.5050788}
+  m_EdgeRadius: 0
 --- !u!1001 &1963659332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19549,7 +19660,7 @@ MonoBehaviour:
 
     and awaits many more.
     Will you dare to be a hopeless dreamer too...'
-  onlyOnce: 1
+  onlyOnce: 0
 --- !u!61 &1963659336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20495,13 +20606,77 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1049023302621363167, guid: c4728654af6c1b84fb5102e3f29ffb8f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2082825575}
+    - targetCorrespondingSourceObject: {fileID: 1049023302621363167, guid: c4728654af6c1b84fb5102e3f29ffb8f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2082825574}
   m_SourcePrefab: {fileID: 100100000, guid: c4728654af6c1b84fb5102e3f29ffb8f, type: 3}
 --- !u!4 &2082825572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1049023302621363165, guid: c4728654af6c1b84fb5102e3f29ffb8f, type: 3}
   m_PrefabInstance: {fileID: 2082825571}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2082825574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208369153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264fd1b465d91ac4c8cd82ce4e7980f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spikes
+--- !u!61 &2082825575
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208369153}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.8353505, y: 0.21499023}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.03125, y: 0.34375}
+    newSize: {x: 1.03125, y: 0.34375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.9390821, y: 0.42998046}
+  m_EdgeRadius: 0
 --- !u!1001 &2128551527
 PrefabInstance:
   m_ObjectHideFlags: 0

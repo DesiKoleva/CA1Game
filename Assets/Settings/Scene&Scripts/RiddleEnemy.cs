@@ -27,11 +27,12 @@ public class RiddleEnemy : Enemy
     }
     void OnAnswered(bool correct)
     {
+        Time.timeScale = 1f;
         if (correct)
         {
             state = State.Passive;
             hostile = false;
-            // Let the hero walk straight through him
+            // Letting the the hero walk straight through the enemy
             foreach (var mine in GetComponentsInChildren<Collider2D>())
                 foreach (var theirs in player.GetComponentsInChildren<Collider2D>())
                     Physics2D.IgnoreCollision(mine, theirs, true);

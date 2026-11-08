@@ -160,8 +160,8 @@ public class GameManager : MonoBehaviour
         if (right)
         {
             AddScore(riddleCorrectPoints);
-            onDone?.Invoke(right);
         }
+        onDone?.Invoke(right);
     }
         IEnumerator TypeRoutine(string full)
         {
