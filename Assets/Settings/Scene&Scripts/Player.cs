@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
     private HeroHealth _health;
+    public int score = 0;
+    public bool hasKey = false;
     
 
     void Start()
@@ -60,7 +63,7 @@ public class Player : MonoBehaviour
             jumpCount++;
             float jumpVelocity = Mathf.Sqrt(-2f * Physics2D.gravity.y * _rigidbody2D.gravityScale * JumpHeight);
             _rigidbody2D.linearVelocity =
-                new Vector2(_rigidbody2D.linearVelocity.x, jumpVelocity);
+            new Vector2(_rigidbody2D.linearVelocity.x, jumpVelocity);
         }
         _animator.SetBool("isJumping", isJumping);
        
@@ -93,11 +96,8 @@ public class Player : MonoBehaviour
     }
 
     //Collectables
-    int presents = 0;
-
-    //public void AddLife()
-    public void AddPresent()
+   public void AddPresent(int amount)
     {
-        presents++;
+        score += amount;
     }
 }

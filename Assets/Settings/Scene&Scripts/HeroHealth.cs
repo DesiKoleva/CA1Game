@@ -30,8 +30,20 @@ public class HeroHealth : MonoBehaviour
 
     void Start()
     {
+        if(Checkpoint.hasCheckpoint)
+        {
+            transform.position = Checkpoint.respawnPosition;
+        }
         health = maxHealth;
         UpdateBar();
+    }
+
+    public bool IsFullHealth => health >= maxHealth;
+    public void RestoreFullHealth()
+    {
+        health = maxHealth;
+        UpdateBar();
+        //Debug.Log("Hero health restored: " + health);
     }
     public void TakeDamage(int amount)
     {
@@ -47,7 +59,8 @@ public class HeroHealth : MonoBehaviour
         invincibleUntil = Time.time + invincibleTime;
         staggerUntil = Time.time + staggerTime;
         health -= amount;
-        Debug.Log("Hero health: " + health);
+        UpdateBar();
+        //Debug.Log("Hero health: " + health);
         if (hitSound != null)
         {
             hitSound.Play();

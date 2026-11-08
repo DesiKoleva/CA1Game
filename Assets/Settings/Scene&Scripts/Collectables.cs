@@ -2,27 +2,53 @@ using UnityEngine;
 
 public class Collectables : MonoBehaviour
 {
-    [SerializeField]
-    Player player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] int points = 10;
+    [SerializeField] bool restoreHEalth = false; //wrote it wrong at first and now when i fix it wouldnt replace itself correctly now
+    [SerializeField] bool floats = true;
+    [SerializeField] float floatHeight = 0.1f;
+    [SerializeField] float floatSpeed = 2f;
+    [SerializeField] bool givesKey = false;
+
+    Vector3 startPos;
+
+    
     void Start()
     {
-        player = GameObject.Find("Hero").GetComponent<Player>();
+        startPos = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(!floats)
+        {
+            return;
+        }
+        float offset = Mathf.Sin(Time.time * floatSpeed) * floatHeight;
+        transform.position = startPos + new Vector3(0f, offset, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player"
-            && this.tag == "Present")
+        Player player = other.GetComponentInParent<Player>();
+        HeroHealth health = other.GetComponentInParent<HeroHealth>();
+
+        if(player == null && health == null)
         {
-            Destroy(this.gameObject);
-            player.AddPresent();
+            return;
         }
+        if(player != null && points > 0)
+        {
+            player.AddPresent(points);
+        }
+        if(restoreHEalth && health != null)
+        {
+            health.RestoreFullHealth();
+        }
+        if(givesKey && player != null)
+        {
+            player.hasKey = true;
+        }
+            Destroy(gameObject);
+        
     }
 }
