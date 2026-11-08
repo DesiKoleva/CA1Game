@@ -39,6 +39,11 @@ public class Collectables : MonoBehaviour
         if(player != null && points > 0)
         {
             player.AddPresent(points);
+            if(GameManager.Instance != null)
+            {
+                GameManager.Instance.AddScore(points);
+
+            }
         }
         if(restoreHEalth && health != null)
         {

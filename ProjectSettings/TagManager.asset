@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Present
   - Collectables
+  - Enemy
+  - RiddleEnemy
   layers:
   - Default
   - TransparentFX

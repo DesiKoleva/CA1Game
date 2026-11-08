@@ -105,18 +105,28 @@ public class HeroHealth : MonoBehaviour
 
         void UpdateBar()
         {
+            if(GameManager.Instance != null)
+        {
+            GameManager.Instance.SetHealth(Mathf.Max(0, health), maxHealth);
+        }
             if(healthBar == null)
-            {
-                return;
-            }
-            healthBar.maxValue = maxHealth;
-            healthBar.value = Mathf.Max(0, health);
+        {
+            return;
+        }
+        healthBar.maxValue = maxHealth;
+        healthBar.value = Mathf.Max(0, health);
         }
 
     void Die()
     {
-        //Restart the level.Or at checkpoint.
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerDied();
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
    
     void Update()

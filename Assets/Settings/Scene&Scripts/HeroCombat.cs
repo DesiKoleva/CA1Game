@@ -44,6 +44,16 @@ public class HeroCombat : MonoBehaviour
             {
                 enemy.TakeHit();
             }
+            Enemy groundEnemy = hit.GetComponentInParent<Enemy>();
+            if(groundEnemy != null)
+            {
+                groundEnemy.TakeDamage(1);
+            }
+            RiddleEnemy riddleEnemy = hit.GetComponentInParent<RiddleEnemy>();
+            if (riddleEnemy != null)
+            {
+                riddleEnemy.TakeDamage(1);
+            }
         }
     }
     void OnDrawGizmosSelected()
