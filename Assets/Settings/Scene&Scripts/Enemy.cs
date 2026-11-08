@@ -12,20 +12,31 @@ public class Enemy : MonoBehaviour
     public float detectRange = 6f;
     public float attackRange = 0.9f;
     public float attackCooldown = 1.2f;
-    public float deathDelay = 0.8f;
     public bool hostile = true;
     public bool spriteFacesRight = true;
+    public float deathDelay = 0.8f;
+    [Header("Animation state names (must match the boxes in the Animator window)")]
+    public string idleState = "MushroomIdle";
+    public string runState = "RunM";
+    public string attackState = "AttackM";
+    public string hitState = "TakeHitM";
+    public string deathState = "DeathM";
+    public float attackAnimTime = 0.6f;
+    public float hitAnimTime = 0.3f;
     protected Transform player;
     protected Rigidbody2D rb;
     protected SpriteRenderer sr;
     protected Animator anim;
-    bool dead;
     int health;
     float nextAttack;
+    bool dead;
+    float animLockUntil;
+    string currentState;
     protected virtual void Awake()
     {
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+
         sr = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
     }
@@ -36,78 +47,88 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (!hostile || player == null || Time.timeScale == 0f) { StopX(); return; }
+        if (dead) return;
+        if (!hostile || player == null || Time.timeScale == 0f)
+        {
+            StopX();
+            ShowMovement(false);
+            return;
+        }
         float dist = Vector2.Distance(transform.position, player.position);
-
-        if (dist > detectRange) { StopX(); return; }
+        if (dist > detectRange)
+        {
+            StopX();
+            ShowMovement(false);
+            return;
+        }
         float dir = Mathf.Sign(player.position.x - transform.position.x);
         if (sr != null) sr.flipX = spriteFacesRight ? dir < 0 : dir > 0;
         if (dist > attackRange)
         {
             if (rb != null) rb.linearVelocity = new Vector2(dir * moveSpeed, rb.linearVelocity.y);
             else transform.Translate(Vector2.right * dir * moveSpeed * Time.deltaTime);
+            ShowMovement(true);
         }
         else
         {
             StopX();
+            ShowMovement(false);
             if (Time.time >= nextAttack)
             {
                 nextAttack = Time.time + attackCooldown;
+                PlayOnce(attackState, attackAnimTime);
                 var hh = player.GetComponent<HeroHealth>();
-               if(hh != null)
-                {
-                    hh.TakeDamageFrom(damage, transform.position);
-                }
+
+                if (hh != null) hh.TakeDamageFrom(damage, transform.position);
             }
         }
     }
     void StopX()
     {
-        SetRunning(false);
         if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
     }
+   
     public void TakeDamage(int amount)
     {
-        if (!hostile) return;
+        if (!hostile || dead) return;
         health -= amount;
-       if(health <= 0)
+        if (health <= 0)
         {
             dead = true;
             hostile = false;
-            SetRunning(false);
-            Trigger("Die");
-            if(rb != null)
-            {
-                rb.linearVelocity = Vector2.zero;
-            }
-            if(GameManager.Instance != null)
-            {
-                GameManager.Instance.AddScore(points);
-            }
+            StopX();
+            animLockUntil = float.MaxValue;
+            currentState = null;
+            PlayState(deathState);
+            if (GameManager.Instance != null) GameManager.Instance.AddScore(points);
             Destroy(gameObject, deathDelay);
         }
         else
         {
-            Trigger("Hit");
-            if(sr != null)
-            {
-                StartCoroutine(Flash());
-            }
+            PlayOnce(hitState, hitAnimTime);
+            if (sr != null) StartCoroutine(Flash());
         }
     }
-    void SetRunning(bool running)
+    // Had an issue with the animations of the mushroom playing so i decided ti directly call the animations from the code
+    void ShowMovement(bool running)
     {
-        if(anim != null)
-        {
-            anim.SetBool("IsRunning", running);
-        }
+        if (Time.time < animLockUntil) return;
+        PlayState(running ? runState : idleState);
     }
-    void Trigger(string name)
+    void PlayOnce(string state, float length)
     {
-        if(anim!= null)
-        {
-            anim.SetTrigger(name);
-        }
+        animLockUntil = Time.time + length;
+        currentState = null;
+        PlayState(state);
+    }
+
+    void PlayState(string state)
+    {
+        if (anim == null || string.IsNullOrEmpty(state) || state == currentState) return;
+        int hash = Animator.StringToHash(state);
+        if (!anim.HasState(0, hash)) return;
+        anim.Play(hash, 0, 0f);
+        currentState = state;
     }
     IEnumerator Flash()
     {

@@ -14475,7 +14475,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &690339175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14490,14 +14490,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 3
   damage: 1
-  points: 25
+  points: 15
   moveSpeed: 1.5
   detectRange: 6
   attackRange: 0.9
   attackCooldown: 1.2
-  deathDelay: 0.8
   hostile: 1
-  spriteFacesRight: 1
+  spriteFacesRight: 0
+  deathDelay: 0.8
+  idleState: MushroomIdle
+  runState: RunM
+  attackState: AttackM
+  hitState: TakeHitM
+  deathState: DeathM
+  attackAnimTime: 0.6
+  hitAnimTime: 0.1
 --- !u!1 &709314321
 GameObject:
   m_ObjectHideFlags: 0
@@ -15130,7 +15137,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &834521530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15150,9 +15157,16 @@ MonoBehaviour:
   detectRange: 6
   attackRange: 0.9
   attackCooldown: 1.2
-  deathDelay: 0.8
   hostile: 1
   spriteFacesRight: 1
+  deathDelay: 0.8
+  idleState: MushroomIdle
+  runState: RunM
+  attackState: AttackM
+  hitState: TakeHitM
+  deathState: DeathM
+  attackAnimTime: 0.6
+  hitAnimTime: 0.3
   riddle: 'I follow you wherever you go,
 
     Yet never speak or make a sound.
@@ -16832,7 +16846,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1131371882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16852,9 +16866,16 @@ MonoBehaviour:
   detectRange: 6
   attackRange: 0.9
   attackCooldown: 1.2
-  deathDelay: 0.8
   hostile: 1
   spriteFacesRight: 1
+  deathDelay: 0.8
+  idleState: MushroomIdle
+  runState: RunM
+  attackState: AttackM
+  hitState: TakeHitM
+  deathState: DeathM
+  attackAnimTime: 0.6
+  hitAnimTime: 0.3
   riddle: 'I have hands but cannot hold,
 
     I tell you stories never told.
