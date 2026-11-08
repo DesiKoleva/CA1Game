@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//The lamp post is the checkpoint for the player. After they walk by they are respawned back to there instead of the start if they die.
 public class Checkpoint : MonoBehaviour
 {
     public static Vector3 respawnPosition;
@@ -15,14 +16,5 @@ public class Checkpoint : MonoBehaviour
         hasCheckpoint = true;
         //Debug.Log("Checkpoint saved");
     }
-    void Start()
-    {
-        
-    }
-
     
-    void Update()
-    {
-        
-    }
 }

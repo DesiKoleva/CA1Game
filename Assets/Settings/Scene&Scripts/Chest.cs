@@ -1,5 +1,7 @@
 using UnityEngine;
 
+//Locks the chest until the player has collected the key
+
 public class Chest : MonoBehaviour
 {
     [SerializeField] Animator animator;
@@ -37,14 +39,5 @@ public class Chest : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        
-    }
-
    
-    void Update()
-    {
-        
-    }
 }

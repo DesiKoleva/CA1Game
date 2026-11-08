@@ -2,6 +2,8 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
+
+//Allows the player to answer the riddles from the riddleEnemy
 public static class GameInput
 {
     public static bool PressedOne()

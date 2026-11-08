@@ -1,5 +1,5 @@
 using UnityEngine;
-
+// I have two ladders the hero can use to climb up and down
 public class Ladder : MonoBehaviour
 {
     public float climbSpeed = 3f;

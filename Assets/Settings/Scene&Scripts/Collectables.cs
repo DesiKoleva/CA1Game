@@ -1,5 +1,8 @@
 using UnityEngine;
 
+//The moneybags carry points
+//The barell restores the health of the player
+//The key is collected to allow the player to open the chest at the start of the map for a huge point present
 public class Collectables : MonoBehaviour
 {
     [SerializeField] int points = 10;

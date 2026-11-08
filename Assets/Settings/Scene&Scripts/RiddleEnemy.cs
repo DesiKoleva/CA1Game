@@ -1,5 +1,5 @@
 using UnityEngine;
-// Goblin and Skeleton use this. Set a different riddle on each in the Inspector.
+// Goblin and Skeleton use this.A different riddle is set on each in the Inspector.
 public class RiddleEnemy : Enemy
 {
     [Header("Riddle")]

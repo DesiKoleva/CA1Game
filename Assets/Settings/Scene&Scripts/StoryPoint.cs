@@ -1,6 +1,6 @@
 using UnityEngine;
 // Put on the Well, Statue, Graveyard and Bulletin Board.
-// Add a BoxCollider2D (Is Trigger ON) sized around the object, then type the story in the Inspector.
+// Each object has a message attached when the player walks into them
 [RequireComponent(typeof(Collider2D))]
 public class StoryPoint : MonoBehaviour
 {

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+//This code deals with the hero's health and death
 public class HeroHealth : MonoBehaviour
 {
     public int maxHealth = 5;
@@ -12,7 +12,7 @@ public class HeroHealth : MonoBehaviour
     public float knockbackForce = 6f;
     public float staggerTime = 0.2f;
     public Slider healthBar;
-    public AudioSource hitSound;
+    
 
     int health;
     float invincibleUntil;
@@ -61,10 +61,6 @@ public class HeroHealth : MonoBehaviour
         health -= amount;
         UpdateBar();
         //Debug.Log("Hero health: " + health);
-        if (hitSound != null)
-        {
-            hitSound.Play();
-        }
         if (health <= 0)
         {
             Die();
@@ -119,7 +115,20 @@ public class HeroHealth : MonoBehaviour
 
     void Die()
     {
-        if(GameManager.Instance != null)
+        var anim = GetComponentInChildren<Animator>();
+        if (anim != null)
+        {
+            anim.updateMode = AnimatorUpdateMode.UnscaledTime;
+            anim.Play("DeathH");
+        }
+
+        var player = GetComponent<Player>();
+        if (player != null) player.enabled = false;
+
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+
+        if (GameManager.Instance != null)
         {
             GameManager.Instance.PlayerDied();
         }
@@ -128,9 +137,6 @@ public class HeroHealth : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
-   
-    void Update()
-    {
-        
-    }
+
+
 }

@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+//This code has to do do with all the hostile actions of the enemies that are on the ground
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]

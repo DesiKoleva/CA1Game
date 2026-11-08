@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
+//this code deals with all the actions of the hero
 public class Player : MonoBehaviour
 {
     public int direction = 0;
